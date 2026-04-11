@@ -27,7 +27,7 @@ export default function FAQ() {
       open: i === index ? !faq.open : false
     })));
   };
-
+// vercel
   return (
     <section className="py-24 bg-white w-full">
       <div className="max-w-4xl mx-auto px-6">
