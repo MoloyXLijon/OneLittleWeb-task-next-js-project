@@ -20,7 +20,7 @@ const initialFaqs = [
 export default function FAQ() {
   const [faqs, setFaqs] = useState(initialFaqs);
 
-  const toggleFaq = (index) => {
+  const toggleFaq = (index: number) => {
     setFaqs(faqs.map((faq, i) => ({
       ...faq,
       open: i === index ? !faq.open : false
@@ -35,10 +35,10 @@ export default function FAQ() {
         <div className="bg-gray-50 rounded-2xl p-8 md:p-12 mb-8">
 
           {/* Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
@@ -53,22 +53,21 @@ export default function FAQ() {
           {/* FAQ List */}
           <div className="divide-y divide-gray-200">
             {faqs.map((faq, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 15 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
-                viewport={{ once: true }} 
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="py-6"
               >
-                <button 
+                <button
                   onClick={() => toggleFaq(i)}
                   className="w-full flex justify-between items-start text-left gap-4"
                 >
                   <span className={`text-[17px] ${faq.open ? 'font-semibold' : 'font-medium'} text-gray-900`}>
                     {faq.q}
                   </span>
-
                   <motion.div animate={{ rotate: faq.open ? 180 : 0 }}>
                     {faq.open ? (
                       <MinusCircle className="w-6 h-6 text-rose-500" strokeWidth={1.5} />
@@ -98,17 +97,17 @@ export default function FAQ() {
         </div>
 
         {/* Bottom Gray Box */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="bg-gray-50 rounded-2xl p-8 text-center"
         >
           <div className="flex justify-center -space-x-3 mb-5">
-            <img className="w-12 h-12 rounded-full border-2 border-white object-cover" src="/images/Avatar.png" alt="" />
-            <img className="w-12 h-12 rounded-full border-2 border-white object-cover z-10" src="/images/Avatar1.png" alt="" />
-            <img className="w-12 h-12 rounded-full border-2 border-white object-cover" src="/images/Avatar2.png" alt="" />
+            <Image className="w-12 h-12 rounded-full border-2 border-white object-cover" src="/images/Avatar.png" alt="Avatar" width={48} height={48} />
+            <Image className="w-12 h-12 rounded-full border-2 border-white object-cover z-10" src="/images/Avatar1.png" alt="Avatar 1" width={48} height={48} />
+            <Image className="w-12 h-12 rounded-full border-2 border-white object-cover" src="/images/Avatar2.png" alt="Avatar 2" width={48} height={48} />
           </div>
 
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -116,7 +115,7 @@ export default function FAQ() {
           </h3>
 
           <p className="text-gray-500 text-[15px] mb-6">
-            Can’t find the answer you’re looking for? Please chat to our friendly team.
+            Can&apos;t find the answer you&apos;re looking for? Please chat to our friendly team.
           </p>
 
           <button className="bg-rose-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-rose-600 transition cursor-pointer">
