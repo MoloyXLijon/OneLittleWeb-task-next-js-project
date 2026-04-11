@@ -27,92 +27,98 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 bg-white overflow-hidden w-full relative">
-      <div className="container mx-auto px-6 max-w-3xl">
-        
-        {/* Header Section (Centered) */}
+    <section className="py-24 bg-white w-full">
+      <div className="max-w-4xl mx-auto px-6">
+
+        {/* FAQ Gray Box */}
+        <div className="bg-gray-50 rounded-2xl p-8 md:p-12 mb-8">
+
+          {/* Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            whileInView={{ opacity: 1, y: 0 }} 
+            viewport={{ once: true }} 
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-[40px] font-bold mb-4 text-gray-900">
+              Frequently asked <span className="text-rose-500">questions</span>
+            </h2>
+            <p className="text-gray-500 text-[16px]">
+              Everything you need to know about the product and billing.
+            </p>
+          </motion.div>
+
+          {/* FAQ List */}
+          <div className="divide-y divide-gray-200">
+            {faqs.map((faq, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 15 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="py-6"
+              >
+                <button 
+                  onClick={() => toggleFaq(i)}
+                  className="w-full flex justify-between items-start text-left gap-4"
+                >
+                  <span className={`text-[17px] ${faq.open ? 'font-semibold' : 'font-medium'} text-gray-900`}>
+                    {faq.q}
+                  </span>
+
+                  <motion.div animate={{ rotate: faq.open ? 180 : 0 }}>
+                    {faq.open ? (
+                      <MinusCircle className="w-6 h-6 text-rose-500" strokeWidth={1.5} />
+                    ) : (
+                      <PlusCircle className="w-6 h-6 text-rose-500" strokeWidth={1.5} />
+                    )}
+                  </motion.div>
+                </button>
+
+                <AnimatePresence>
+                  {faq.open && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <p className="text-gray-500 mt-3 pr-10 text-[15px]">
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Gray Box */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl md:text-[40px] font-bold mb-4 text-gray-900 tracking-tight leading-[1.15]">
-            Frequently asked questions
-          </h2>
-          <p className="text-[16px] text-gray-500 leading-relaxed">
-            Everything you need to know about the product and billing.
-          </p>
-        </motion.div>
-
-        {/* FAQ Accordion List */}
-        <div className="flex flex-col mb-16">
-          {faqs.map((faq, i) => (
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              key={i} 
-              className="border-b border-gray-200 py-6 first:pt-0"
-            >
-              <button 
-                onClick={() => toggleFaq(i)}
-                className="w-full flex items-start justify-between text-left gap-4 group cursor-pointer"
-              >
-                <span className={`text-[17px] leading-snug transition-colors ${faq.open ? 'font-semibold text-gray-900' : 'font-medium text-gray-900'}`}>
-                  {faq.q}
-                </span>
-                <div className="shrink-0 mt-0.5">
-                  <motion.div animate={{ rotate: faq.open ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                    {faq.open ? (
-                      <MinusCircle className="w-6 h-6 text-gray-400" strokeWidth={1.5} />
-                    ) : (
-                      <PlusCircle className="w-6 h-6 text-gray-400" strokeWidth={1.5} />
-                    )}
-                  </motion.div>
-                </div>
-              </button>
-              <AnimatePresence initial={false}>
-                {faq.open && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-gray-500 mt-3 pr-10 text-[15px] leading-relaxed">
-                      {faq.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Still have questions box (Centered at bottom) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once: true }} 
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-gray-50 rounded-2xl p-8 text-center flex flex-col items-center"
+          className="bg-gray-50 rounded-2xl p-8 text-center"
         >
           <div className="flex justify-center -space-x-3 mb-5">
-            <img className="w-12 h-12 rounded-full border-2 border-white object-cover shadow-sm relative z-10" src="/images/Avatar.png" alt="Avatar 1" />
-            <img className="w-12 h-12 rounded-full border-2 border-white object-cover shadow-sm relative z-20" src="/images/Avatar1.png" alt="Avatar 2" />
-            <img className="w-12 h-12 rounded-full border-2 border-white object-cover shadow-sm relative z-30" src="/images/Avatar2.png" alt="Avatar 3" />
+            <img className="w-12 h-12 rounded-full border-2 border-white object-cover" src="/images/Avatar.png" alt="" />
+            <img className="w-12 h-12 rounded-full border-2 border-white object-cover z-10" src="/images/Avatar1.png" alt="" />
+            <img className="w-12 h-12 rounded-full border-2 border-white object-cover" src="/images/Avatar2.png" alt="" />
           </div>
-          <h3 className="font-semibold text-[18px] text-gray-900 mb-2">
-            Still have questions?
+
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            Still have Questions?
           </h3>
-          <p className="text-gray-500 text-[15px] mb-8 leading-relaxed">
-            Can't find the answer you're looking for? Please chat to our friendly team.
+
+          <p className="text-gray-500 text-[15px] mb-6">
+            Can’t find the answer you’re looking for? Please chat to our friendly team.
           </p>
-          <button className="bg-rose-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-rose-600 transition-all active:scale-95">
+
+          <button className="bg-rose-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-rose-600 transition cursor-pointer">
             Get in touch
           </button>
         </motion.div>
