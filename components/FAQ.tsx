@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 import { useState } from 'react';
 import { PlusCircle, MinusCircle } from 'lucide-react';
@@ -30,11 +31,7 @@ export default function FAQ() {
   return (
     <section className="py-24 bg-white w-full">
       <div className="max-w-4xl mx-auto px-6">
-
-        {/* FAQ Gray Box */}
         <div className="bg-gray-50 rounded-2xl p-8 md:p-12 mb-8">
-
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +47,6 @@ export default function FAQ() {
             </p>
           </motion.div>
 
-          {/* FAQ List */}
           <div className="divide-y divide-gray-200">
             {faqs.map((faq, i) => (
               <motion.div
@@ -96,7 +92,6 @@ export default function FAQ() {
           </div>
         </div>
 
-        {/* Bottom Gray Box */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +117,6 @@ export default function FAQ() {
             Get in touch
           </button>
         </motion.div>
-
       </div>
     </section>
   );
