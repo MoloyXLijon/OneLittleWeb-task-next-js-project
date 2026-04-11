@@ -35,7 +35,7 @@ const CARD_W = 370;
 const GAP = 24;
 
 export default function Testimonials() {
-  const [current, setCurrent] = useState(1); // Esther center by default
+  const [current, setCurrent] = useState(1);
   const outerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
@@ -55,7 +55,7 @@ export default function Testimonials() {
       clearTimeout(timer);
       window.removeEventListener('resize', onResize);
     };
-  }, [current]); // eslint-disable-line
+  }, [current]);
 
   return (
     <section id="reviews" className="py-20 bg-white overflow-hidden w-full">

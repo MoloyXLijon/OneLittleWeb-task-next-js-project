@@ -36,7 +36,7 @@ export default function Pricing() {
             Airnbn Assistent <span className="text-rose-500">pricing</span>
           </h2>
           <p className="text-gray-800 font-medium mb-12 max-w-xl mx-auto">
-            Choose a plan that's right for you
+            Choose a plan that&apos;s right for you
           </p>
           
           {/* Toggle Container */}

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { PlusCircle, MinusCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const initialFaqs = [
   {
